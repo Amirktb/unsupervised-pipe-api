@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="../static/css/style.css" rel="stylesheet" />
+    <title>Unsupervised Machine Learning Platform</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="main-header">
+        <h1>🤖 Unsupervised Machine Learning Platform 🤖</h1>
+      </header>
+
+      <section>
+        <div class="grid-2-cols">
+          <div class="pipe-explaination">
+            <h2>End-to-end Unsupervised Machine Learning Pipeline</h2>
+            <p class="explanation-text">
+              <strong>How it works:</strong> This end-to-end pipeline ingest any
+              tabular data to perform first data preprocessing and cleaning.
+              Then, a pipeline based on the features of the dataset will be
+              prepared to perform clustering and dimensionality reduction. To
+              obtained the optimal number of clusters, clustering analysis is
+              also integrated into this pipeline.
+            </p>
+          </div>
+          <img src="../static/pipeline_view.png" alt="photo" />
+        </div>
+      </section>
+      <section>
+        <h2>Try it out by importing your csv dataset</h2>
+        <div class="upload-container">
+          <form
+            action="/upload-csv"
+            method="POST"
+            enctype="multipart/form-data"
+            id="uploadData"
+          >
+            <div class="file-input-container">
+              <label class="load-button" for="upload">Choose Dataset:</label>
+              <input type="file" name="file" accept=".csv" id="upload" />
+              <label for="n_clusters">Number of Clusters (2-100):</label>
+              <input
+                type="number"
+                id="n_clusters"
+                name="n_clusters"
+                min="2"
+                max="100"
+              />
+              <label class="submit-button" for="submit">Submit</label>
+              <input type="submit" id="submit" hidden />
+            </div>
+          </form>
+          <p id="errorMessage" style="color: red; font-size: 18px;"></p>
+          <script>
+            // Function to show error message
+            function showErrorMessage(message) {
+              var errorMessageElement = document.getElementById("errorMessage");
+              errorMessageElement.innerText = message;
+              errorMessageElement.style.display = "block";
+            }
+
+            // Submit form event listener
+            document
+              .getElementById("uploadData")
+              .addEventListener("submit", async function (event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+
+                // Send form data using fetch
+                try {
+                  var response = await fetch("/upload-csv/", {
+                    method: "POST",
+                    body: formData,
+                  });
+
+                  if (response.ok) {
+                    // Success, reset form and hide error message
+                    window.location.href = "/analysis";
+                  } else {
+                    // Error response, display error message
+                    var responseData = await response.json();
+                    // showErrorMessage(responseData.detail);
+                    showErrorMessage(
+                    "Dataset and number of clusters are not provided."
+                  )
+                  }
+                } catch (error) {
+                  console.error("Error:", error);
+                  showErrorMessage(
+                    "An error occurred. Please try again later."
+                  );
+                }
+              });
+          </script>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

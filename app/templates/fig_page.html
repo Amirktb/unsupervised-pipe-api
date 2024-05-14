@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/css/fig_page.css" />
+    <title>Clustering Analysis</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-text-box">
+          <h1>Analyzing the clustering pipeline for better results</h1>
+          <p class="header-text">
+            The elbow method and silhouette coefficients are two techniques used
+            to determine the optimal number of clusters in clustering analysis.
+            In this clustering pipeline, these techniques are used to identify
+            the appropritate number of clusters.
+          </p>
+        </div>
+        <img src="../static/clustering_analysis.png" alt="photo" />
+      </header>
+
+      <section>
+        <h2>Elbow Method and Silhouette Coefficients</h2>
+        <div class="grid-2-cols">
+          <div>
+            <p class="method-title">
+              <strong>Elbow Method Result of the imported data</strong>
+            </p>
+            <p class="method-explaination">
+              The elbow method is a heuristic approach that helps identify the
+              appropriate number of clusters by plotting the explained variation
+              as a function of the number of clusters.
+            </p>
+            <img
+              src="data:image/png;base64,{{ figure_base64_elb }}"
+              alt="Seaborn Figure"
+            />
+          </div>
+
+          <div>
+            <p class="method-title">
+              <strong>Silhouette Coefficients of the imported data</strong>
+            </p>
+            <p class="method-explaination">
+              The silhouette coefficient is a measure of how similar an object
+              is to its own cluster compared to other clusters. It ranges from
+              -1 to 1, where higher values indicate that the object is
+              well-matched to its own cluster and poorly matched to neighboring
+              clusters.
+            </p>
+            <img
+              src="data:image/png;base64,{{ figure_base64_silh }}"
+              alt="Seaborn Figure"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="results-section">
+        <div class="grid-2-cols">
+          <div class="result-box">
+            <h2>Results of Clustering Pipeline for {{n_clusters}} clusters</h2>
+            <script>
+              var n_clusters = "{{ n_clusters }}";
+              console.log("number of clusters", n_clusters);
+            </script>
+            <p>
+              Two dimensional scatter plot based on principal components of PCA
+              method and colored based on labels of clusters.
+            </p>
+          </div>
+          <img
+            src="data:image/png;base64,{{ figure_base64_result }}"
+            alt="Seaborn Figure"
+          />
+        </div>
+      </section>
+
+      <section class="return-button">
+        <div class="return-container">
+          <form action="/" method="get">
+            <label class="Btn-return" for="return">Try again with different number of clusters</label>
+            <input type="submit" id="return" hidden />
+          </form>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

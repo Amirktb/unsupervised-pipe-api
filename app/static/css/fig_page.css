@@ -1,0 +1,93 @@
+/* STYLE FOR FIG_PAGE */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* GENERAL STYLES */
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+header,
+section {
+  margin-bottom: 48px;
+}
+
+h2 {
+  margin-bottom: 48px;
+  font-size: 36px;
+  letter-spacing: -0.5px;
+}
+
+.grid-2-cols {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 80px;
+}
+
+/* COMPONENT STYLES */
+
+/* HEADER */
+header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 80px;
+  margin-top: 48px;
+}
+
+.header-text-box {
+  align-self: center;
+}
+
+h1 {
+  margin-bottom: 24px;
+  font-size: 44px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+img {
+  width: 100%;
+}
+
+/* METHODS */
+
+.method-title {
+  margin-bottom: 16px;
+}
+
+.method-explaination {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.return-container {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+}
+
+.Btn-return {
+  background-color: #0ca678;
+  color: white;
+  padding: 16px 15px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.Btn-return:hover {
+  background-color: #bfcfc0;
+}
